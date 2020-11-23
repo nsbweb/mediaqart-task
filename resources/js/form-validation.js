@@ -9,6 +9,9 @@
     // Loop over them and prevent submission
     Array.prototype.filter.call(forms, function (form) {
       form.addEventListener('submit', function (event) {
+        // var l =  Ladda.create( document.querySelector( '.ladda-button' ) );
+        // Ladda.start();
+     
         if (form.checkValidity() === false) {
           event.preventDefault()
           event.stopPropagation()

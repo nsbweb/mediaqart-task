@@ -7,12 +7,13 @@
 <meta name="author" content=">
 <meta name="generator" content="">
 <title>Home</title>
+<link href="resources/css/ladda.min.css" rel="stylesheet"><!-- Custom styles for this template -->
 <link href="resources/css/bootstrap.min.css" rel="stylesheet"><!-- Bootstrap core CSS -->
 <link href="resources/css/form-validation.css" rel="stylesheet"><!-- Custom styles for this template -->
 <link href="resources/css/style.css" rel="stylesheet"><!-- Custom style CSS -->
 </head>
 <body class="bg-light">
-<div class="container  contact-form">
+<div class="container  contact-form examples">
     <form class="needs-validation mt-4 mb-4" novalidate="">
         <div class="row">
             <div class="col-md-6 order-md-2 mb-4">
@@ -59,8 +60,10 @@
                     <div class="invalid-feedback">Please Select Valid Contact Purpose.</div>
                 </div>
             </div>
-            <div class="col-md-12 order-md-3">
-                <button class="btn btn-primary ml-auto" type="submit">Send</button>
+            <div class="col-md-12 order-md-3 d-flex">
+                <!-- <button class="btn btn-primary ml-auto" type="submit">Send</button> -->
+                <button class="ladda-button  btn btn-primary ml-auto expand-right" type="submit" data-style="expand-right"><span class="label">Send</span> <span class="spinner"></span></button>
+                
             </div>
         </div>
     </form>
@@ -68,7 +71,9 @@
 <script src="resources/js/jquery-3.3.1.slim.min.js"></script>
 <script src="resources/js/bootstrap.bundle.min.js"></script>
 <script src="resources/js/form-validation.js"></script>
-<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+<script src="resources/js/jquery.mask.min.js"></script>
+<script src="resources/js/spin.min.js"></script>
+<script src="resources/js/ladda.min.js"></script>
 <script>
   (function( $ ) {
   $(function() {
@@ -76,6 +81,30 @@
     // $('.phone_with_ddd').mask('(00) 0000-0000');
     // $('.phone_us').mask('(000) 000-0000');
   });
+
+  var buttons = document.querySelectorAll( '.ladda-button' );
+
+    Array.prototype.slice.call( buttons ).forEach( function( button ) {
+
+	var resetTimeout;
+
+	button.addEventListener( 'click', function() {
+		
+		if( typeof button.getAttribute( 'data-loading' ) === 'string' ) {
+			button.removeAttribute( 'data-loading' );
+		}
+		else {
+			button.setAttribute( 'data-loading', '' );
+		}
+
+		clearTimeout( resetTimeout );
+		resetTimeout = setTimeout( function() {
+			button.removeAttribute( 'data-loading' );			
+		}, 2000 );
+
+	}, false );
+
+});
 })(jQuery);
 </script>
 </body>
